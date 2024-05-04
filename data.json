@@ -2,17 +2,17 @@
 
 	{
 		"id":"1",
-		"name":"asdfa",
-		"coordinatesX":"11234.0",
-		"coordinatesY":63456,
-		"creationDate":"2024-03-14",
-		"area":234,
-		"numberOfRooms":"567",
-		"balcony":true,
-		"timeToMetroOnFoot":"34576",
+		"name":"1",
+		"coordinatesX":"1.0",
+		"coordinatesY":1,
+		"creationDate":"2024-05-03",
+		"area":1,
+		"numberOfRooms":"1",
+		"balcony":false,
+		"timeToMetroOnFoot":"3",
 		"view":"BAD",
-		"houseName":"11",
-		"houseYear":"44",
-		"houseNumberOfLifts":"66"
+		"houseName":"23452",
+		"houseYear":"435",
+		"houseNumberOfLifts":"3"
 	}
 ]

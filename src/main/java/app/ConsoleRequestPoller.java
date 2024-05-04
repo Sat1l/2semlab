@@ -1,7 +1,7 @@
 package main.java.app;
 
-import java.io.InputStreamReader;
-import java.util.Locale;
+import main.java.server.modules.CommandCaller;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -17,14 +17,13 @@ public class ConsoleRequestPoller {
     }
 
     public void poll(){
-        String retrieved;
-        while(true){
-            try {
-                retrieved = scanner.nextLine().trim().toLowerCase();
-                commandCaller.call(retrieved);
-            } catch (NoSuchElementException e){
-                commandCaller.call("exit");
-            }
-        }
+//        while(true){
+//            try {
+//                retrieved = scanner.nextLine().trim().toLowerCase();
+//                commandCaller.call(retrieved);
+//            } catch (NoSuchElementException e){
+//                commandCaller.call("exit");
+//            }
+//        }
     }
 }
