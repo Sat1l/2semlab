@@ -2,7 +2,6 @@ package main.java.server.commands;
 
 import main.java.common.network.Response;
 import main.java.server.modules.CommandManager;
-import main.java.client.misc.ConsoleGod;
 import main.java.server.modules.Server;
 
 import java.io.Serializable;
@@ -16,7 +15,7 @@ public class Help extends Command {
         HashMap<String, Command> commands = manager.getCommands();
         StringBuilder ret = new StringBuilder();
         for (Map.Entry<String, Command> entry : commands.entrySet()){
-            ret.append(entry.getKey() + " - " + entry.getValue().getDescription() + "\n");
+            ret.append(entry.getKey()).append(" - ").append(entry.getValue().getDescription()).append("\n");
         }
         return new Response(ret.toString());
     }

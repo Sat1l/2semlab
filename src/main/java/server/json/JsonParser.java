@@ -6,7 +6,6 @@ import main.java.server.modules.Converter;
 import main.java.common.misc.ParsedFlatData;
 import main.java.common.model.Flat;
 import main.java.type.adapters.LocalDateTypeAdapter;
-import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.time.LocalDate;

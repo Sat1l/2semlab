@@ -1,18 +1,2 @@
 [
-
-	{
-		"id":"1",
-		"name":"1",
-		"coordinatesX":"1.0",
-		"coordinatesY":1,
-		"creationDate":"2024-05-03",
-		"area":1,
-		"numberOfRooms":"1",
-		"balcony":false,
-		"timeToMetroOnFoot":"3",
-		"view":"BAD",
-		"houseName":"23452",
-		"houseYear":"435",
-		"houseNumberOfLifts":"3"
-	}
 ]

@@ -2,12 +2,12 @@ package main.java.client;
 
 import main.java.client.modules.Client;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Client client = Client.getInstance();
+        Client.getInstance().setScanner(new Scanner(System.in));
         client.run();
     }
 }

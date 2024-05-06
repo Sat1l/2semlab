@@ -2,7 +2,6 @@ package main.java.server.commands;
 
 import main.java.common.network.Response;
 import main.java.server.modules.CollectionManager;
-import main.java.client.misc.ConsoleGod;
 import main.java.common.model.Flat;
 import main.java.server.modules.Server;
 
@@ -20,7 +19,6 @@ public class Show extends Command{
         for(Flat flat : flats){
             ret.append(flat.toString()).append("\n");
         }
-
         return new Response(ret.toString());
     }
 

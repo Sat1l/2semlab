@@ -1,19 +1,16 @@
 package main.java.server.commands;
 
-import main.java.client.modules.DataFetcher;
 import main.java.common.misc.FlatData;
 import main.java.common.network.Response;
 import main.java.server.modules.CollectionManager;
 import main.java.server.modules.Server;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
 
 public class UpdateId extends Command{
     @Override
     public Response call(String strArg, Serializable objectArg) {
         long id = Long.parseLong(strArg);
-        DataFetcher fetcher = new DataFetcher();
         CollectionManager manager = Server.getInstance().getCollectionManager();
         FlatData flatData = (FlatData) objectArg;
         if(manager.updateById(id, flatData).equals("success")){

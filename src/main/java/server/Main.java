@@ -6,8 +6,6 @@ import main.java.server.modules.CommandManager;
 import main.java.server.modules.Server;
 import main.java.server.commands.*;
 
-import java.net.InetSocketAddress;
-
 public class Main {
     public static void main(String[] args) {
         Server server = Server.getInstance();
@@ -15,14 +13,13 @@ public class Main {
         server.setCommandCaller(new CommandCaller());
         server.setCollectionManager(new CollectionManager());
         server.getCommandManager().add("add", new Add());
-        server.getCommandManager().add("save", new Save());
-//        server.getCommandManager().add("parse", new Parse());
         server.getCommandManager().add("clear", new Clear());
         server.getCommandManager().add("remove_by_id", new RemoveById());
         server.getCommandManager().add("show", new Show());
         server.getCommandManager().add("update_id", new UpdateId());
         server.getCommandManager().add("help", new Help());
         server.getCommandManager().add("info", new Info());
+        server.getCommandManager().add("execute_script", new Execute());
         server.run(args);
 
 //        Server server = new Server(new InetSocketAddress("localhost", 8000));

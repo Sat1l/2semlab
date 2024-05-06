@@ -1,7 +1,6 @@
 package main.java.server.commands;
 
 
-import main.java.client.modules.DataFetcher;
 import main.java.common.network.Response;
 import main.java.server.modules.CollectionManager;
 import main.java.server.modules.Server;

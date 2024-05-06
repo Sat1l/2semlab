@@ -4,7 +4,6 @@ import main.java.common.network.Request;
 import main.java.common.network.Response;
 import main.java.server.commands.Command;
 import main.java.common.exceptions.NoSuchCommandException;
-import main.java.client.misc.ConsoleGod;
 
 public class CommandCaller {
 

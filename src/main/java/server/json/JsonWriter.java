@@ -26,7 +26,7 @@ public class JsonWriter {
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filepath))){
             writer.write(data.toString());
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println("could not find the json");
         }
     }
 }

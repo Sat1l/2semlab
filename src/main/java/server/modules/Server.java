@@ -1,10 +1,8 @@
 package main.java.server.modules;
 
 import main.java.common.network.Request;
-import main.java.common.network.Response;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
@@ -12,8 +10,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.sql.Timestamp;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.NoSuchElementException;
 
 public class Server {
@@ -27,10 +23,10 @@ public class Server {
     CollectionManager collectionManager;
 
     private InetSocketAddress address;
-    private Response response;
-    private Request request;
 
-    private Server() { }
+    private Server(InetSocketAddress address) {
+        this.address = address;
+    }
 
     public static Server getInstance(){
         if(server == null){
@@ -39,15 +35,8 @@ public class Server {
         return server;
     }
 
-    public Server(InetSocketAddress address) {
-        this.address = address;
-    }
-
-
     public void run(String[] args)  {
-
-        String retrieved;
-
+        collectionManager.setCollection(StorageManager.readStorage());
         try {
             DatagramSocket serverSocket = new DatagramSocket(Integer.parseInt("5001"));
             System.out.println("Server Started. Listening for Clients on port 5001" + "...");
@@ -57,7 +46,6 @@ public class Server {
             DatagramPacket receivePacket;
             while (true) {
                 try {
-                    // Server waiting for clients message
                     receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     serverSocket.receive(receivePacket);
 
@@ -68,7 +56,7 @@ public class Server {
                     InetAddress IPAddress = receivePacket.getAddress();
                     int port = receivePacket.getPort();
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    System.out.println("[" + timestamp.toString() + ", IP: " + IPAddress + ", Port: " + port + "] ");
+                    System.out.println("[" + timestamp + ", IP: " + IPAddress + ", Port: " + port + "] ");
                     String response = commandCaller.call(receivedObject).getMessage();
                     System.out.println(response);
                     responseData = response.getBytes();
@@ -80,9 +68,7 @@ public class Server {
                 }
 
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -90,10 +76,6 @@ public class Server {
 
     public CommandManager getCommandManager() {
         return commandManager;
-    }
-
-    public CommandCaller getCommandCaller() {
-        return commandCaller;
     }
 
     public CollectionManager getCollectionManager() {

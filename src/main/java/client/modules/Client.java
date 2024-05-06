@@ -1,22 +1,23 @@
 package main.java.client.modules;
 
 import main.java.common.misc.FlatData;
-import main.java.common.model.Flat;
 import main.java.common.network.Request;
-import main.java.server.modules.Server;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.*;
-import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Client {
 
     private static Client client;
+
+    Scanner scanner;
+
+    Scanner tempScanner;
 
     private InetAddress host;
     private int port;
@@ -40,6 +41,7 @@ public class Client {
     }
 
     public void run()  {
+        System.out.print("> ");
         try {
             Scanner input = new Scanner(System.in);
             while (input.hasNext()) {
@@ -50,12 +52,13 @@ public class Client {
                     arguments = prompt[1].trim();
                 }
                 command = prompt[0].trim();
-
                 processUserPrompt(command, arguments);
                 System.out.print("> ");
             }
+            System.out.println("bye-bye🤫🧏");
+            System.exit(0);
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("IOException occurred.");
+            System.out.println("IOException occurred or class not found.");
         }
     }
 
@@ -63,27 +66,30 @@ public class Client {
         Request request;
         if (command.equalsIgnoreCase("add") || command.equalsIgnoreCase("update_id")){
             FlatData objArgument = new DataFetcher().fetch();
-            request = new Request(command, arguments, objArgument);
-            send(request);
+            if (objArgument != null) {
+                System.out.println(send(new Request(command, arguments, objArgument)));
+            }
         }
         else if (command.equalsIgnoreCase("exit")){
-            System.out.println("client connection stopped");
+            System.out.println("bye-bye🤫🧏");
             System.exit(0);
         }
-        else if (command.equalsIgnoreCase("executeScript")){
+        else if (command.equalsIgnoreCase("execute")){
             executeScript(arguments);
         }
         else {
             request = new Request(command, arguments);
-            send(request);
+
+            String response = send(request);
+            System.out.println(response);
         }
     }
 
     private String send(Request request) throws IOException{
-        String response;
+        String response = "";
         try{
             DatagramSocket socket = new DatagramSocket();
-            socket.setSoTimeout(1000);
+            socket.setSoTimeout(100);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             oos.writeObject(request);
@@ -95,22 +101,61 @@ public class Client {
             DatagramPacket receivePacket = new DatagramPacket(responseData, responseData.length);
             socket.receive(receivePacket);
             response = new String(receivePacket.getData(), 0, receivePacket.getLength());
-            System.out.println(response);
-
+//            System.out.println(response);
             socket.close();
+            return response;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("the server is not reachable as of now, try again later...");
         }
         return response;
     }
 
-    private
+    private void executeScript(String filepath){
+        File file = new File(filepath);
+        if(this.getScriptsStack().contains(file)){
+            System.out.println("Recursion detected");
+            return;
+        }
+        try {
+            this.tempScanner = Client.getInstance().scanner;
+            Scanner newScanner = new Scanner(file);
+            this.getScriptsStack().add(file);
+            this.setScanner(newScanner);
+            while (newScanner.hasNextLine()){
+                String line = newScanner.nextLine();
+                var command = "";
+                var arguments = "";
+
+                String[] prompt = (line + " ").trim().split(" ", 2);
+                if (prompt.length == 2) {
+                    arguments = prompt[1].trim();
+                }
+                command = prompt[0].trim();
+                if (command.equals("execute")){
+                    this.executeScript(arguments);
+                    continue;
+
+                }
+                processUserPrompt(command, arguments);
+            }
+            setScanner(tempScanner);
+            this.getScriptsStack().removeLast();
+        } catch (FileNotFoundException e) {
+            System.out.println("didn't find the desired script file");
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Deque<File> getScriptsStack() {
         return scriptsStack;
     }
 
-    public boolean isInteractiveMode() {
-        return scriptsStack.isEmpty();
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
     }
 }

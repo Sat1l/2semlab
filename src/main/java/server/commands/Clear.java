@@ -1,6 +1,5 @@
 package main.java.server.commands;
 
-import main.java.common.model.Flat;
 import main.java.common.network.Response;
 import main.java.server.modules.Server;
 
@@ -10,7 +9,7 @@ import java.util.HashSet;
 public class Clear extends Command{
     @Override
     public Response call(String strArg, Serializable objArg) {
-        Server.getInstance().getCollectionManager().setCollection(new HashSet<Flat>());
+        Server.getInstance().getCollectionManager().setCollection(new HashSet<>());
         return new Response("collection had been successfully cleared");
     }
 
