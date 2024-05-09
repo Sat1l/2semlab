@@ -11,8 +11,6 @@ public class AverageTimeToMetroOnFoot extends Command {
     @Override
     public Response call(String strArg, Serializable objArg) {
 
-
-
         double averageValue = Server.getInstance().getCollectionManager().getCollection().stream()
                 .mapToLong(Flat::getTimeToMetroOnFoot) // Map each Flat to its 'value' field
                 .average()                 // Calculate the average

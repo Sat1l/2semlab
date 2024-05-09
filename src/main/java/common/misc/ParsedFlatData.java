@@ -1,5 +1,6 @@
 package main.java.common.misc;
 
+@SuppressWarnings("unused")
 public class ParsedFlatData {
 
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически

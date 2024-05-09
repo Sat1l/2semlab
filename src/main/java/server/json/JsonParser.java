@@ -2,7 +2,6 @@ package main.java.server.json;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import main.java.client.modules.Client;
 import main.java.server.modules.Converter;
 import main.java.common.misc.ParsedFlatData;
 import main.java.common.model.Flat;

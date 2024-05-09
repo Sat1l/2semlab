@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RemoveGreater extends Command {
 
@@ -23,7 +22,7 @@ public class RemoveGreater extends Command {
                 .filter(flat -> flat.getValue() <= threshold)
                 .toList();
 
-        Server.getInstance().getCollectionManager().setCollection(new HashSet<Flat>(filteredFlats));
+        Server.getInstance().getCollectionManager().setCollection(new HashSet<>(filteredFlats));
         return new Response("successfully removed all flats with value greater than " + threshold);
     }
 

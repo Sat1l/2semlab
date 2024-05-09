@@ -1,16 +1,13 @@
 package main.java.server.commands;
 
-import main.java.client.modules.Client;
 import main.java.common.misc.FlatData;
 import main.java.common.model.Flat;
 import main.java.common.network.Response;
-import main.java.server.modules.CollectionManager;
 import main.java.server.modules.Server;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Optional;
 
 public class AddIfMax extends Command {

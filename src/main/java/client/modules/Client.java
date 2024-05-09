@@ -8,7 +8,6 @@ import java.net.*;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Client {
@@ -19,8 +18,8 @@ public class Client {
 
     Scanner tempScanner;
 
-    private InetAddress host;
-    private int port;
+    private final InetAddress host;
+    private final int port;
     private SocketChannel channel;
     private final Deque<File> scriptsStack = new ArrayDeque<>();
 

@@ -3,9 +3,9 @@ package main.java.common.network;
 import java.io.Serializable;
 
 public class Request implements Serializable {
-    private String commandName;
-    private String commandStrArg;
-    private Serializable commandObjArg;
+    private final String commandName;
+    private final String commandStrArg;
+    private final Serializable commandObjArg;
 
     public Request(String commandName, String commandStrArg, Serializable commandObjArg) {
         this.commandName = commandName;

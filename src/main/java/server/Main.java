@@ -25,7 +25,7 @@ public class Main {
         server.getCommandManager().add("remove_lower", new RemoveLower());
         server.getCommandManager().add("print_dnor", new PrintDescendingNumberOfRooms());
         server.getCommandManager().add("print_dttmof", new PrintDescendingTimeToMetroOnFoot());
-        server.run(args);
-
+        server.getCommandManager().add("average_ttmof", new AverageTimeToMetroOnFoot());
+        server.run();
     }
 }

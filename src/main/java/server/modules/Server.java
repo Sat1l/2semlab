@@ -24,15 +24,15 @@ public class Server {
 
     private String colPath;
 
-    private InetSocketAddress address;
+//    private InetSocketAddress address;
 
-    private Server(InetSocketAddress address) {
-        this.address = address;
-    }
+//    private Server(InetSocketAddress address) {
+//        this.address = address;
+//    }
 
     public static Server setupInstance(String filepath){
         if(server == null){
-            server = new Server(new InetSocketAddress(5001));
+//            server = new Server(new InetSocketAddress(5001));
             server.setColPath(filepath);
         }
         return server;
@@ -42,7 +42,7 @@ public class Server {
         return server;
     }
 
-    public void run(String[] args)  {
+    public void run()  {
         collectionManager.setCollection(StorageManager.readStorage());
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -55,7 +55,7 @@ public class Server {
             System.out.println("Server Started. Listening for Clients on port 5001" + "...");
             // Assume messages are not over 1024 bytes
             byte[] receiveData = new byte[1024];
-            byte[] responseData = new byte[1024];
+            byte[] responseData;
             DatagramPacket receivePacket;
             while (true) {
                 try {
@@ -82,9 +82,7 @@ public class Server {
 
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchElementException e){
-            System.out.println("porno!");
+            System.out.println("got an issue while trying to access file: " + e.getMessage());
         }
 
     }
