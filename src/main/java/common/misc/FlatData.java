@@ -16,6 +16,7 @@ public class FlatData implements Serializable {
     private long timeToMetroOnFoot;
     private View view;
     private House house;
+    private long value;
 
     public void setName(String name) {
         this.name = name;
@@ -49,6 +50,10 @@ public class FlatData implements Serializable {
         this.house = house;
     }
 
+    public void setValue() {
+        this.value = this.area* 41L + this.numberOfRooms*23 + this.timeToMetroOnFoot*29;
+    }
+
     public String getName() {
         return name;
     }
@@ -80,6 +85,11 @@ public class FlatData implements Serializable {
     public House getHouse() {
         return house;
     }
+
+    public long getValue() {
+        return value;
+    }
+
 
     @Override
     public String toString() {

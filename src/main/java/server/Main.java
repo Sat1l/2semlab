@@ -8,7 +8,8 @@ import main.java.server.commands.*;
 
 public class Main {
     public static void main(String[] args) {
-        Server server = Server.getInstance();
+        System.out.println(args[0]);
+        Server server = Server.setupInstance(args[0]);
         server.setCommandManager(new CommandManager());
         server.setCommandCaller(new CommandCaller());
         server.setCollectionManager(new CollectionManager());
@@ -19,11 +20,12 @@ public class Main {
         server.getCommandManager().add("update_id", new UpdateId());
         server.getCommandManager().add("help", new Help());
         server.getCommandManager().add("info", new Info());
-        server.getCommandManager().add("execute_script", new Execute());
+        server.getCommandManager().add("add_if_max", new AddIfMax());
+        server.getCommandManager().add("remove_greater", new RemoveGreater());
+        server.getCommandManager().add("remove_lower", new RemoveLower());
+        server.getCommandManager().add("print_dnor", new PrintDescendingNumberOfRooms());
+        server.getCommandManager().add("print_dttmof", new PrintDescendingTimeToMetroOnFoot());
         server.run(args);
 
-//        Server server = new Server(new InetSocketAddress("localhost", 8000));
-//        server.run(new String[]{"collection.csv"});
-//        Строчки для теста на локалхосте. Для гелиуса достаточно указать только порт
     }
 }

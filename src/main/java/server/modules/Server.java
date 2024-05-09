@@ -22,21 +22,34 @@ public class Server {
 
     CollectionManager collectionManager;
 
+    private String colPath;
+
     private InetSocketAddress address;
 
     private Server(InetSocketAddress address) {
         this.address = address;
     }
 
-    public static Server getInstance(){
+    public static Server setupInstance(String filepath){
         if(server == null){
             server = new Server(new InetSocketAddress(5001));
+            server.setColPath(filepath);
         }
+        return server;
+    }
+
+    public static Server getInstance(){
         return server;
     }
 
     public void run(String[] args)  {
         collectionManager.setCollection(StorageManager.readStorage());
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            StorageManager.saveToStorage();
+            System.out.println("Server stopped. Collection saved.");
+        }));
+
         try {
             DatagramSocket serverSocket = new DatagramSocket(Integer.parseInt("5001"));
             System.out.println("Server Started. Listening for Clients on port 5001" + "...");
@@ -70,6 +83,8 @@ public class Server {
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (NoSuchElementException e){
+            System.out.println("porno!");
         }
 
     }
@@ -92,5 +107,13 @@ public class Server {
 
     public void setCollectionManager(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
+    }
+
+    public String getColPath() {
+        return colPath;
+    }
+
+    public void setColPath(String colPath) {
+        this.colPath = colPath;
     }
 }

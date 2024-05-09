@@ -11,11 +11,10 @@ public class Info extends Command{
     @Override
     public Response call(String strArg, Serializable objectArg) {
         CollectionManager manager = Server.getInstance().getCollectionManager();
-        StringBuilder ret = new StringBuilder();
-        ret.append("collection type: ").append(manager.getCollection().getClass().getSimpleName()).append("\n");
-        ret.append("element type: ").append(Flat.class.getSimpleName()).append("\n");
-        ret.append("element amount: ").append(manager.getCollection().size()).append("\n");
-        return new Response(ret.toString());
+        String ret = "collection type: " + manager.getCollection().getClass().getSimpleName() + "\n" +
+                "element type: " + Flat.class.getSimpleName() + "\n" +
+                "element amount: " + manager.getCollection().size() + "\n";
+        return new Response(ret);
     }
 
     @Override

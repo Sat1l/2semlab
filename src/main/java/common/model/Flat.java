@@ -17,6 +17,8 @@ public class Flat {
     private final View view; //Поле может быть null
     private final House house; //Поле не может быть null
 
+    private final long value;
+
     public Flat(long id, FlatData flatData){
         this.id = id;
         this.name = flatData.getName();
@@ -28,6 +30,7 @@ public class Flat {
         this.timeToMetroOnFoot = flatData.getTimeToMetroOnFoot();
         this.view = flatData.getView();
         this.house = flatData.getHouse();
+        this.value = this.area* 41L + this.numberOfRooms*23 + this.timeToMetroOnFoot*29;
     }
 
     public long getId() {
@@ -70,6 +73,10 @@ public class Flat {
         return house;
     }
 
+    public long getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return "Flat{" +
@@ -86,6 +93,7 @@ public class Flat {
                 ", houseName=" + house.getName() +
                 ", houseYear=" + house.getYear() +
                 ", houseNumberOfLifts=" + house.getNumberOfLifts() +
+                ", value=" + value +
                 '}';
     }
 }

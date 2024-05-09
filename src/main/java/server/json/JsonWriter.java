@@ -2,6 +2,7 @@ package main.java.server.json;
 
 import main.java.server.modules.Converter;
 import main.java.common.model.Flat;
+import main.java.server.modules.Server;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,7 +13,7 @@ public class JsonWriter {
 
     public void write(Collection<Flat> rows){
 
-        String filepath = "./data.json";
+        String filepath = Server.getInstance().getColPath();
         StringBuilder data = new StringBuilder();
 
         data.append("[\n");

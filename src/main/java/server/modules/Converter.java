@@ -25,6 +25,7 @@ public class Converter {
         data.put("houseName", flat.getHouse().getName());
         data.put("houseYear", flat.getHouse().getYear());
         data.put("houseNumberOfLifts", flat.getHouse().getNumberOfLifts());
+        data.put("value", flat.getValue());
         return data;
     }
 
@@ -71,6 +72,7 @@ public class Converter {
         house.setYear(flat.getHouseYear());
         house.setNumberOfLifts(flat.getHouseNumberOfLifts());
         flatData.setHouse(house);
+        flatData.setValue();
         return new Flat(flat.getId(), flatData);
     }
 }
