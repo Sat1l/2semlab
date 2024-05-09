@@ -8,7 +8,10 @@ import main.java.server.commands.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(args[0]);
+        if (args.length == 0){
+            System.out.println("data file path was not provided, please try again with path");
+            System.exit(0);
+        }
         Server server = Server.setupInstance(args[0]);
         server.setCommandManager(new CommandManager());
         server.setCommandCaller(new CommandCaller());
