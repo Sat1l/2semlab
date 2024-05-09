@@ -24,15 +24,12 @@ public class Server {
 
     private String colPath;
 
-//    private InetSocketAddress address;
-
-//    private Server(InetSocketAddress address) {
-//        this.address = address;
-//    }
+    private Server() {
+    }
 
     public static Server setupInstance(String filepath){
         if(server == null){
-//            server = new Server(new InetSocketAddress(5001));
+            server = new Server();
             server.setColPath(filepath);
         }
         return server;

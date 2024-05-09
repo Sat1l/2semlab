@@ -28,6 +28,6 @@ public class RemoveLower extends Command{
 
     @Override
     public String getDescription() {
-        return null;
+        return "removes all flats with value LOWER than the value of the flat with the specified id";
     }
 }

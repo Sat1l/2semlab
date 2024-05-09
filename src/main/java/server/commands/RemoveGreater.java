@@ -28,6 +28,6 @@ public class RemoveGreater extends Command {
 
     @Override
     public String getDescription() {
-        return null;
+        return "removes all flats with value GREATER than the value of the flat with the specified id";
     }
 }

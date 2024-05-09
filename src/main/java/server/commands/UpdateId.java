@@ -14,7 +14,7 @@ public class UpdateId extends Command{
         CollectionManager manager = Server.getInstance().getCollectionManager();
         FlatData flatData = (FlatData) objectArg;
         if(manager.updateById(id, flatData).equals("success")){
-            return new Response("successfully updated a flat with id" + id);
+            return new Response("successfully updated a flat with id " + id);
         }
         return new Response("failed: could not find a flat with " + id + " to update");
     }

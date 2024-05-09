@@ -17,7 +17,7 @@ public class RemoveById extends Command{
         Flat flat = manager.getFlatById(id);
         if (flat != null){
             flats.remove(manager.getFlatById(id));
-            return new Response("removed flat with id" + id);
+            return new Response("removed flat with id " + id);
         } else {
             return new Response("server could not find this id in collection thus its not getting removed");
         }

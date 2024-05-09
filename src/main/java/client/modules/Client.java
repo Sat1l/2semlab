@@ -43,10 +43,15 @@ public class Client {
         System.out.print("> ");
         try {
             Scanner input = new Scanner(System.in);
-            while (input.hasNext()) {
+            while (input.hasNextLine()) {
                 var command = "";
                 var arguments = "";
-                String[] prompt = (input.nextLine() + " ").trim().split(" ", 2);
+                String inpt = input.nextLine();
+                if (inpt.trim().isEmpty()) {
+                    System.out.print("> ");
+                    continue;
+                }
+                String[] prompt = (inpt + " ").trim().split(" ", 2);
                 if (prompt.length == 2) {
                     arguments = prompt[1].trim();
                 }
@@ -77,8 +82,8 @@ public class Client {
             executeScript(arguments);
         }
         else {
-            request = new Request(command, arguments);
 
+            request = new Request(command, arguments);
             String response = send(request);
             System.out.println(response);
         }

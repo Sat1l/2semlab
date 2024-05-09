@@ -16,7 +16,7 @@ public class PrintDescendingTimeToMetroOnFoot extends Command{
 
         List<Flat> flats = new ArrayList<>(Server.getInstance().getCollectionManager().getCollection());
         flats.sort(Comparator.comparing(Flat::getTimeToMetroOnFoot).reversed());
-        StringBuilder toret = new StringBuilder("Sorted time to metro on foot: ");
+        StringBuilder toret = new StringBuilder("sorted time to metro on foot: ");
         for (Flat flat : flats) {
             toret.append(flat.getTimeToMetroOnFoot()).append(", ");
         }
@@ -25,6 +25,6 @@ public class PrintDescendingTimeToMetroOnFoot extends Command{
 
     @Override
     public String getDescription() {
-        return null;
+        return "prints the time to metro on foot in descending order";
     }
 }

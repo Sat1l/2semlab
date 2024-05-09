@@ -15,7 +15,7 @@ public class PrintDescendingNumberOfRooms extends Command {
 
         List<Flat> flats = new ArrayList<>(Server.getInstance().getCollectionManager().getCollection());
         flats.sort(Comparator.comparing(Flat::getNumberOfRooms).reversed());
-        StringBuilder toret = new StringBuilder("Sorted amounts of rooms: ");
+        StringBuilder toret = new StringBuilder("sorted amounts of rooms: ");
         for (Flat flat : flats) {
             toret.append(flat.getNumberOfRooms()).append(", ");
         }
@@ -24,6 +24,6 @@ public class PrintDescendingNumberOfRooms extends Command {
 
     @Override
     public String getDescription() {
-        return null;
+        return "prints the number of rooms in descending order";
     }
 }

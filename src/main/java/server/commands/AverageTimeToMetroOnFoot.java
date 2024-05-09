@@ -15,11 +15,11 @@ public class AverageTimeToMetroOnFoot extends Command {
                 .mapToLong(Flat::getTimeToMetroOnFoot) // Map each Flat to its 'value' field
                 .average()                 // Calculate the average
                 .orElse(0);                // Default value if the collection is empty
-        return new Response("Average time to metro on foot: " + averageValue);
+        return new Response("average time to metro on foot: " + averageValue);
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return "prints the average time to metro on foot";
     }
 }
